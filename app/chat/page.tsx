@@ -7,10 +7,10 @@ import Textbox from "@/components/textbox";
 import Conversation from "./Conversation";
 import PageTitle from "./title";
 
-
 export default function ChatPage() {
-  const [conversationMessages, setConversationMessages] =
-    useState<ChatMessage[]>([]);
+  const [conversationMessages, setConversationMessages] = useState<
+    ChatMessage[]
+  >([]);
   const [currentInputText, setCurrentInputText] = useState("");
 
   return (
@@ -23,6 +23,13 @@ export default function ChatPage() {
         <Textbox
           value={currentInputText}
           onChange={setCurrentInputText}
+          onEnter={() =>
+            appendUserMessageWithPlaceholderReply(
+              currentInputText,
+              setConversationMessages,
+              setCurrentInputText,
+            )
+          }
         />
 
         <button
@@ -30,7 +37,7 @@ export default function ChatPage() {
             appendUserMessageWithPlaceholderReply(
               currentInputText,
               setConversationMessages,
-              setCurrentInputText
+              setCurrentInputText,
             )
           }
         >
